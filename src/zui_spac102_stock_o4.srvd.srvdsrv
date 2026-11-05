@@ -1,0 +1,4 @@
+@EndUserText.label: 'service definition for projection view'
+define service ZUI_SPAC102_STOCK_O4 {
+  expose ZC_SPAC102_STOCK;
+}

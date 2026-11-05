@@ -1,0 +1,24 @@
+managed implementation in class zbp_r_spac102_stock unique;
+strict ( 2 );
+
+define behavior for ZR_SPAC102_STOCK //alias <alias_name>
+//  implementation in class zbp_r_spac102_stock unique
+persistent table zspac102_stock
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) WarehouseId, ProductId;
+
+    mapping for zspac102_stock
+    {
+    WarehouseId = warehouse_id;
+    ProductId = product_id;
+    Amount = amount;
+
+
+    }
+}
