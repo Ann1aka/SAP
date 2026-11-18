@@ -11,5 +11,16 @@ define root view entity ZC_SPAC102_STOCK
 {
   key WarehouseId,
   key ProductId,
-  Amount
+  Amount,
+  
+  _prodAssoc,
+  _wahouseAssoc,
+  
+  _prodAssoc.product_name as ProductName,
+  _prodAssoc.product_description as ProductDescription,
+  
+  _wahouseAssoc.postal_code as PostalCode,
+  _wahouseAssoc.city as City,
+  _wahouseAssoc.address as Address
+  
 }

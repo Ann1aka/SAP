@@ -1,4 +1,4 @@
-projection;
+projection;// implementation in class zbp_c_spac102_stock unique;
 strict ( 2 );
 
 define behavior for ZC_SPAC102_STOCK //alias <alias_name>

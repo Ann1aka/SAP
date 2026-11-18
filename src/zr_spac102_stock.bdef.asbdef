@@ -8,17 +8,17 @@ lock master
 authorization master ( instance )
 //etag master <field_name>
 {
-  create ( authorization : global );
+  create( authorization : global );
   update;
   delete;
   field ( readonly ) WarehouseId, ProductId;
+
+
 
     mapping for zspac102_stock
     {
     WarehouseId = warehouse_id;
     ProductId = product_id;
     Amount = amount;
-
-
     }
 }

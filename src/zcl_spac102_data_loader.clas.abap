@@ -18,7 +18,9 @@ CLASS zcl_spac102_data_loader DEFINITION
 ENDCLASS.
 
 
-CLASS zcl_spac102_data_loader IMPLEMENTATION.
+
+CLASS ZCL_SPAC102_DATA_LOADER IMPLEMENTATION.
+
 
   METHOD if_oo_adt_classrun~main.
 
@@ -36,50 +38,69 @@ CLASS zcl_spac102_data_loader IMPLEMENTATION.
   METHOD fill_table.
 *                                  ÆNDR TABELNAVNET
 *                                  vvvvvvvvvvvvvvvv
-    DATA: temp_table TYPE TABLE OF  zspac102_stock .
+    DATA: temp_table TYPE TABLE OF  zspac102_wahouse .
 *                                  ^^^^^^^^^^^^^^^^
 
     temp_table = VALUE #(
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 *   Ændr data herunder, når du vil fylde data på andre tabeller
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-      ( warehouse_id = 1 product_id = 1 amount =   3 )
-      ( warehouse_id = 3 product_id = 4 amount =  42 )
-      ( warehouse_id = 2 product_id = 5 amount =   1 )
-      ( warehouse_id = 3 product_id = 5 amount = 321 )
-      ( warehouse_id = 3 product_id = 1 amount =  20 )
-      ( warehouse_id = 1 product_id = 5 amount =   9 )
-      ( warehouse_id = 2 product_id = 3 amount =   5 )
-      ( warehouse_id = 3 product_id = 2 amount =   4 )
-      ( warehouse_id = 1 product_id = 4 amount =   0 )
-      ( warehouse_id = 3 product_id = 3 amount =   8 )
-      ( warehouse_id = 1 product_id = 3 amount = 100 )
-      ( warehouse_id = 1 product_id = 2 amount =   7 )
-      ( warehouse_id = 2 product_id = 4 amount =   0 )
+*    STOCK
+*      ( warehouse_id = 1 product_id = 1 amount =   3 )
+*      ( warehouse_id = 3 product_id = 4 amount =  42 )
+*      ( warehouse_id = 2 product_id = 5 amount =   1 )
+*      ( warehouse_id = 3 product_id = 5 amount = 321 )
+*      ( warehouse_id = 3 product_id = 1 amount =  20 )
+*      ( warehouse_id = 1 product_id = 5 amount =   9 )
+*      ( warehouse_id = 2 product_id = 3 amount =   5 )
+*      ( warehouse_id = 3 product_id = 2 amount =   4 )
+*      ( warehouse_id = 1 product_id = 4 amount =   0 )
+*      ( warehouse_id = 3 product_id = 3 amount =   8 )
+*      ( warehouse_id = 1 product_id = 3 amount = 100 )
+*      ( warehouse_id = 1 product_id = 2 amount =   7 )
+*      ( warehouse_id = 2 product_id = 4 amount =   0 )
+
+
+**     PRODUCT
+*      ( product_id = 1 product_name = 'product1' product_description = 'Description for product1' )
+*      ( product_id = 2 product_name = 'product2' product_description = 'Description for product2' )
+*      ( product_id = 3 product_name = 'product3' product_description = 'Description for product3' )
+*      ( product_id = 4 product_name = 'product4' product_description = 'Description for product4' )
+*      ( product_id = 5 product_name = 'product5' product_description = 'Description for product5' )
+
+*     WAHOUSE
+      ( warehouse_id = 1 address = 'Nørregade 1' city = 'København' postal_code = 1234 )
+      ( warehouse_id = 2 address = 'Lillegade 2' city = 'Esbjerg' postal_code = 4321 )
+      ( warehouse_id = 3 address = 'Lillegade 3' city = 'Holte' postal_code = 1122 )
+
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 *   Ændr data herover, når du vil fylde data på andre tabeller
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     ).
 
+
     TRY.
 *            ÆNDR TABELNAVNET
 *            vvvvvvvvvvvvvvvv
-      INSERT  zspac102_stock  FROM TABLE @( CORRESPONDING #( temp_table ) ).
+      INSERT  zspac102_wahouse  FROM TABLE @( CORRESPONDING #( temp_table ) ).
 *            ^^^^^^^^^^^^^^^^
+
 
     CATCH cx_sy_open_sql_db INTO DATA(lx).
       RAISE EXCEPTION lx.
     ENDTRY.
 
     r_output = |Inserted { sy-dbcnt } entries into table.|.
-
   ENDMETHOD.
+
 
   METHOD cleanup.
 
 *               ÆNDR TABELNAVNET
 *               vvvvvvvvvvvvvvvv
-    DELETE FROM  zspac102_stock .
+    DELETE FROM  zspac102_wahouse .
 *               ^^^^^^^^^^^^^^^^
 
     IF sy-subrc <> 0.
