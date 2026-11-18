@@ -11,6 +11,13 @@ define root view entity ZC_SPAC102_PRODUCT
  provider contract transactional_query
   as projection on ZR_SPAC102_PRODUCT
 {
+  @UI.facet: [ {
+    label: 'General Information',
+    id: 'GeneralInfo',
+    purpose: #STANDARD,
+    position: 10 ,
+    type: #IDENTIFICATION_REFERENCE
+  } ]
   @EndUserText.label: 'ProductId'
   @UI.lineItem: [{ position : 10, label :  'Product id'}]
   @UI.identification: [{ position : 10, label : 'Product id'}]

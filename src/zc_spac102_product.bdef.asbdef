@@ -15,7 +15,6 @@ define behavior for ZC_SPAC102_PRODUCT //alias <alias_name>
   use delete;
   //field ( readonly ) ProductId;
 
-
   use action Activate;
   use action Discard;
   use action Edit;

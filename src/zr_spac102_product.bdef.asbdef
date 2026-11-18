@@ -7,25 +7,21 @@ persistent table zspac102_product
 draft table zspac102_prdct_d
 lock master total etag LastChangedAt
 
-authorization master ( none )
-//etag master <field_name>
+authorization master ( instance )
+etag master LocalLastChangedAt
 {
 
 
   //field ( readonly ) ProductId;
 
   field ( mandatory : create )
-  ProductId,
-  ProductName,
-  ProductDescription;
-  //WarehouseId,
-  //Amount;
+  ProductId;
+  //ProductName,
+  //ProductDescription;
 
 
-  field ( readonly:update )
-  ProductId,
-  ProductName,
-  ProductDescription;
+  field ( readonly : update )
+  ProductId;
 
 
   draft action Activate optimized;
@@ -34,7 +30,7 @@ authorization master ( none )
   draft action Resume;
   draft determine action Prepare;
 
-  create; //( authorization : global );
+  create ( authorization : global );
   update;
   delete;
 
@@ -44,7 +40,6 @@ authorization master ( none )
     ProductName = product_name;
     ProductDescription = product_description;
 
-    //WarehouseId = warehouse_id;
     LocalCreatedBy = local_created_by;
     LocalCreatedAt = local_created_at;
     LocalLastChangedBy = local_last_changed_by;

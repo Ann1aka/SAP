@@ -21,5 +21,13 @@ define root view entity ZR_SPAC102_STOCK
   
 // Exposing associations  
   _prodAssoc,
-  _wahouseAssoc
+  _wahouseAssoc,
+  
+  _prodAssoc.local_created_by as LocalCreatedBy,
+  _prodAssoc.local_created_at as LocalCreatedAt,
+  _prodAssoc.local_last_changed_by as LocalLastChangedBy,
+  _prodAssoc.local_last_changed_at as LocalLastChangedAt,
+  _prodAssoc.last_changed_at as LastChangedAt
+  
+  
 }
