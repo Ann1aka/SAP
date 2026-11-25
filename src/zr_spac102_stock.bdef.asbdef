@@ -17,7 +17,7 @@ etag master LocalLastChangedAt
   ProductId;
   //Amount;
 
-  field ( readonly:update )
+  field ( readonly:update ) //When updating a record, these fields are read-only
   WarehouseId,
   ProductId;
 
@@ -33,7 +33,11 @@ etag master LocalLastChangedAt
   delete;
   //field ( readonly ) WarehouseId, ProductId;
 
+  validation checkSemanticKey
+    on save { create; }
 
+  validation validateAmount
+    on save { create; update; }
 
     mapping for zspac102_stock
     {
